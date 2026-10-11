@@ -1,13 +1,15 @@
 import {useGetUsers, usePostUsers} from "./hooks/userHook";
 import "./App.css";
-import {useState, type ReactElement, type ReactEventHandler} from "react";
+import {useEffect, useState} from "react";
 import type {NewUser} from "./types/userType";
-import type {ReactFormState} from "react-dom/client";
 const App = () => {
   const {data, loading, error} = useGetUsers();
   const {mutate, loading: postLoading, error: postError} = usePostUsers();
 
-  const [formData, setFormData] = useState<NewUser>();
+  const [formData, setFormData] = useState<NewUser>({
+    name: "",
+    email: ""
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const App = () => {
         name: "",
         email: "",
       });
+      console.log(res);
     } catch (err) {
       console.log(err);
       return alert(`something wrong happened!\n${err}`);
@@ -27,7 +30,13 @@ const App = () => {
   };
 
   console.log(postLoading);
-  
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+  useEffect(() => {
+    console.log(postError);
+  }, [postError]);
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="form">
