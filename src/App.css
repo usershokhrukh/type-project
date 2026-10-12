@@ -6,6 +6,7 @@
 }
 
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,9 +62,73 @@
   border: 1px solid cyan
 }
 
-.button {
+.button, .cards-act {
   background-color: rgb(3, 110, 110);
   padding: 10px;
   color: white;
   border: 1px solid rgb(3, 110, 110);
+}
+
+
+.cards-act-delete {
+  background-color: rgb(153, 10, 10);
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cards-act-edit {
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(197, 133, 15);
+}
+.cards-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.315);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  border-radius: 30px;
+  background-color: rgb(207, 207, 207);
+  box-shadow: 0px 0px 10px -1px rgb(110, 110, 110);
+}
+
+.modal-button {
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(7, 136, 136);
+  color: white;
+  flex-grow: 1;
+}
+
+.modal-box {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}
+
+.modal-close {
+  background-color: gray;
 }
