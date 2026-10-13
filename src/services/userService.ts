@@ -12,13 +12,13 @@ export const getAllUsers = async (): Promise<User[]> => {
 };
 
 export const getOneUsers = async (id: number): Promise<User> => {
-  const response = await axios.get(
-    `https://jsonplaceholder.typicode.com/users/${id}`,
-  );
-  if (!(response.status >= 200 && response.status < 300)) {
-    throw new Error("Could not get the data, error");
-  }
-  return await response?.data;
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+    );
+    if (!(response.status >= 200 && response.status < 300)) {
+      throw new Error("Could not get the data, error");
+    }
+    return await response?.data;
 };
 export const postUseService = async (user: NewUser): Promise<User[]> => {
   const response = await axios.post(
@@ -39,11 +39,13 @@ export const deleteService = async (id: Pick<User, "id">): Promise<User> => {
   if (!(response.status >= 200 && response.status < 300)) {
     throw new Error("Could not delete the data, error");
   }
-  return await response?.data
+  return await response?.data;
 };
 
-
-export const putUseService = async (user: NewUser, id: number): Promise<User> => {
+export const putUseService = async (
+  user: NewUser,
+  id: number,
+): Promise<User> => {
   const response = await axios.put(
     `https://jsonplaceholder.typicode.com/users/${id}`,
     user,

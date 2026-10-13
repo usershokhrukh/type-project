@@ -32,10 +32,14 @@ const App = () => {
     }
   };
   useEffect(() => {
-    console.log(error);
+    if (error) {
+      console.log(error);
+    }
   }, [error]);
   useEffect(() => {
-    console.log(postError);
+    if (postError) {
+      console.log(postError);
+    }
   }, [postError]);
 
   const {
@@ -50,7 +54,7 @@ const App = () => {
     }
   }, [deleteError]);
 
-  const [modal, setModal] = useState<boolean>(true);
+  const [modal, setModal] = useState<boolean>(false);
   const [oneId, setOneId] = useState<number>(0);
   const {
     loading: oneLOading,
@@ -71,12 +75,6 @@ const App = () => {
   });
 
   useEffect(() => {
-    if (oneId) {
-      res();
-    }
-  }, [oneId]);
-
-  useEffect(() => {
     if (oneData?.name && oneData?.email) {
       setOneInput({
         name: oneData?.name,
@@ -91,7 +89,9 @@ const App = () => {
   }, [oneData]);
 
   useEffect(() => {
-    res();
+    if(oneId) {
+      res();
+    }
   }, [modal]);
 
   const {
@@ -100,15 +100,15 @@ const App = () => {
     mutate: putMutate,
   } = usePutUsers();
 
-  const handleEdit =  async (e: React.FormEvent) => {
+  const handleEdit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!oneInput?.name || !oneInput?.email) {
       return alert("Fill inputs!");
     }
     try {
       const res = await putMutate(oneInput, oneId);
-      setModal(false)
-      alert("Successfully changed!")
+      setModal(false);
+      alert("Successfully changed!");
       console.log(res);
     } catch (err) {
       return alert(`something wrong happened!\n${err}`);
